@@ -1,0 +1,19 @@
+.LoginPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.LoginPage_center {
+  margin: 0 auto;
+  max-width: 300px;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.LoginPage_center h1 {
+  margin: 0;
+  margin-bottom: 20px;
+}

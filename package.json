@@ -1,0 +1,9 @@
+{
+  "name": "ayc-starter",
+  "version": "0.0.1",
+  "description": "Starter pack for Agile Youth Competition",
+  "author": "William Goodall <wgoodall01@gmail.com>",
+  "license": "Apache 2.0",
+  "private": true,
+  "workspaces": ["server", "client", "common"]
+}

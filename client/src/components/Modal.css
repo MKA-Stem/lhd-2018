@@ -1,0 +1,19 @@
+.Modal {
+  padding: 20px;
+  border-radius: 3px;
+  color: var(--color-dark);
+
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Modal_title {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.Modal_actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

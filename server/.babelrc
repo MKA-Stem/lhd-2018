@@ -1,0 +1,10 @@
+{
+  "passPerPreset": true,
+  "presets": [
+    "react",
+    "env",
+    "stage-0"
+  ],
+  "plugins": [
+  ]
+}

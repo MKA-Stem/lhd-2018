@@ -1,0 +1,32 @@
+.Button {
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.Button.Button_sm {
+  font-size: 16px;
+  padding: 5px;
+}
+
+.Button.Button_lg {
+  font-size: 20px;
+  padding: 8px;
+}
+
+.Button.Button_dark {
+  background-color: var(--color-shade);
+  color: white;
+}
+
+.Button.Button_light {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+.Button.Button_danger {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
