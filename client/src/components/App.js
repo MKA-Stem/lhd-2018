@@ -16,8 +16,11 @@ class App extends Component {
               <Link to="/">ayc-starter</Link>
             </span>
             <button className="App_logout" onClick={() => this.props.auth.signOut()}>
-              {(this.props.auth.getInfo() || {}).email} | Sign Out
+              Sign Out
             </button>
+            <span className="App_logout">
+              {(this.props.auth.getInfo() || {}).email}
+            </span>
           </div>
         </div>
 
