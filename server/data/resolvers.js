@@ -23,7 +23,6 @@ const resolvers = {
       `,
         {id: ctx.user.id, message: args.message}
       );
-      console.log(record.rows[0]);
       return record.rows[0];
     }
   },

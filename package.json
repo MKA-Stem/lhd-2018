@@ -4,6 +4,11 @@
   "description": "Starter pack for Agile Youth Competition",
   "author": "William Goodall <wgoodall01@gmail.com>",
   "license": "Apache 2.0",
+  "scripts": {
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
+    "start": "cd server && npm run start"
+  },
   "private": true,
   "workspaces": ["server", "client", "common"]
 }

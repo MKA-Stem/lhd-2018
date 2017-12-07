@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./server.js --exec babel-node",
-    "start": "yarn run --silent dev",
+    "start": "NODE_ENV=production babel-node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
@@ -32,26 +32,22 @@
     "graphql": "^0.11.7",
     "graphql-tools": "^1.0.0",
     "knex": "^0.14.0",
-    "pg": "^7.4.0"
-  },
-  "devDependencies": {
+    "pg": "^7.4.0",
     "babel-cli": "6.5.1",
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-polyfill": "6.5.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "6.5.0",
-    "eslint": "^2.4.0",
+    "babel-preset-stage-0": "6.5.0"
+  },
+  "devDependencies": {
     "nodemon": "^1.9.1"
   },
   "peerDependencies": {},
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb/base",
-      "plugin:import/errors"
-    ],
+    "extends": ["airbnb/base", "plugin:import/errors"],
     "rules": {
       "no-use-before-define": 0,
       "arrow-body-style": 0,
