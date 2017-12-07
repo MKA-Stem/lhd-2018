@@ -7,8 +7,16 @@
   "scripts": {
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "start": "cd server && npm run start"
+    "start": "cd server && npm run start",
+    "dev": "nf start -j Procfile.dev"
   },
   "private": true,
-  "workspaces": ["server", "client", "common"]
+  "workspaces": [
+    "server",
+    "client",
+    "common"
+  ],
+  "dependencies": {
+    "foreman": "^2.0.0"
+  }
 }
