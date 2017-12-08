@@ -1,4 +1,5 @@
 import knex from 'knex';
+import pg from 'pg';
 import Client from 'knex/lib/dialects/postgres';
 import Formatter from 'knex/lib/formatter';
 
@@ -12,6 +13,9 @@ Client.prototype.wrapIdentifier = value => {
 };
 
 Formatter.prototype.wrapAsIdentifier = value => `"${(value || '').replace(/"/g, '""')}"`;
+
+// Make sure postgres uses ssl to connect
+pg.defaults.ssl = true;
 
 const db = knex({
   client: 'pg',
