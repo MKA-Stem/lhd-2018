@@ -9,7 +9,7 @@
     "heroku-postbuild": "npm run build",
     "start": "cd server && npm run start",
     "dev": "nf start -j Procfile.dev",
-    "heroku-configure":"heroku config --json --app ayc-2018 > .env"
+    "heroku-configure": "heroku config --json --app ayc-2018 > .env"
   },
   "private": true,
   "workspaces": [

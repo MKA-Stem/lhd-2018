@@ -1,11 +1,8 @@
-import {withAuthInfo} from './authContext.js';
+import React from 'react';
+import {AuthConsumer} from './authContext.js';
 
-export const LoginSwitch = ({authInfo, loggedIn, loggedOut}) => {
-  if (authInfo !== null) {
-    return loggedIn;
-  } else {
-    return loggedOut;
-  }
-};
+export const LoginSwitch = ({loggedIn, loggedOut}) => (
+  <AuthConsumer>{({info}) => (info === null ? loggedOut : loggedIn)}</AuthConsumer>
+);
 
-export default withAuthInfo()(LoginSwitch);
+export default LoginSwitch;

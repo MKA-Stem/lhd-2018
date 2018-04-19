@@ -13,10 +13,10 @@
   bottom: 10px;
   left: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 8px;
   text-transform: uppercase;
   cursor: pointer;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }

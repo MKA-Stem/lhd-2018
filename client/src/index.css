@@ -9,7 +9,12 @@ body {
   box-sizing: inherit;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight:normal;
+}
+
 :root {
+  --color-primary: #34495e;
   --color-dark: #222;
   --color-shade: #888;
 }

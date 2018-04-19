@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
-import {withAuthInfo} from 'lib/auth/authContext.js';
+import {AuthConsumer} from 'lib/auth/authContext.js';
 
 import './App.css';
 
@@ -12,15 +12,19 @@ class App extends Component {
       <div className="App">
         <div className="App_header">
           <div className="App_container">
-            <span className="App_brand">
-              <Link to="/">ayc-starter</Link>
-            </span>
-            <button className="App_logout" onClick={() => this.props.auth.signOut()}>
-              Sign Out
-            </button>
-            <span className="App_logout">
-              {(this.props.auth.getInfo() || {}).email}
-            </span>
+            <AuthConsumer>
+              {({info, googleAuth}) => (
+                <React.Fragment>
+                  <span className="App_brand">
+                    <Link to="/">ayc-starter</Link>
+                  </span>
+                  <button className="App_logout" onClick={() => googleAuth.signOut()}>
+                    Sign Out
+                  </button>
+                  <span className="App_logout">{info && info.email}</span>
+                </React.Fragment>
+              )}
+            </AuthConsumer>
           </div>
         </div>
 
@@ -35,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default withAuthInfo()(App);
+export default App;

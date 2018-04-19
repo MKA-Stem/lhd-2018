@@ -1,58 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const {Provider, Consumer} = React.createContext({info: null, googleAuth: null});
+
 export class AuthProvider extends React.Component {
-  getChildContext() {
-    return {
-      auth: this.props.auth
+  constructor(props) {
+    super(props);
+    this.auth = props.auth;
+    this.state = {
+      ctx: {
+        info: this.auth.getInfo(),
+        googleAuth: this.auth
+      }
     };
+
+    this.listener = this.listener.bind(this);
+  }
+
+  listener(info) {
+    this.setState({ctx: {info, googleAuth: this.auth}});
+  }
+
+  componentDidMount() {
+    this.auth.subscribe(this.listener);
+  }
+
+  componentWillUnmount() {
+    this.auth.unsubscribe(this.listener);
   }
 
   render() {
-    return this.props.children;
-  }
-
-  static get childContextTypes() {
-    return {
-      auth: PropTypes.object
-    };
+    return <Provider value={this.state.ctx}>{this.props.children}</Provider>;
   }
 }
 
-export const withAuthInfo = (mapInfoToProps, mapAuthToProps) => Child => {
-  mapInfoToProps = mapInfoToProps || (authInfo => ({authInfo}));
-  mapAuthToProps = mapAuthToProps || (auth => ({auth}));
-
-  return class WithAuthInfo extends React.Component {
-    constructor(props, context) {
-      super(props);
-      this.auth = context.auth;
-      this.state = {authInfo: this.auth.getInfo()};
-      this.listener = authInfo => this.setState({authInfo});
-    }
-
-    static get contextTypes() {
-      return {
-        auth: PropTypes.object
-      };
-    }
-
-    componentDidMount() {
-      this.auth.subscribe(this.listener);
-    }
-
-    componentWillUnmount() {
-      this.auth.unsubscribe(this.listener);
-    }
-
-    render() {
-      return (
-        <Child
-          {...this.props}
-          {...mapInfoToProps(this.state.authInfo)}
-          {...mapAuthToProps(this.auth)}
-        />
-      );
-    }
-  };
-};
+export const AuthConsumer = Consumer;
