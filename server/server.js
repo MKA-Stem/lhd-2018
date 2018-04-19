@@ -15,10 +15,6 @@ dotenv.config();
 const GRAPHQL_PORT = process.env.PORT || 8080;
 const DEV = process.env.NODE_ENV === 'development';
 
-if (!DEV) {
-  require('newrelic');
-}
-
 const app = express();
 
 // Compress all requests.
