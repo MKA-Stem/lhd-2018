@@ -7,6 +7,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
+    "shuffle-array": "^1.0.1",
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
@@ -19,5 +20,10 @@
     "extends": "react-app"
   },
   "proxy": "http://localhost:8080",
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
