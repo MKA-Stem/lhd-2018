@@ -36,7 +36,8 @@ io.on('connection', socket => {
   socket.on('join_host', () => {
     const game = new Game(socket);
     allGames[game.id] = game;
-    game.room = socket.to(game.id);
+    socket.join(game.id);
+    game.room = io.to(game.id);
   });
 });
 

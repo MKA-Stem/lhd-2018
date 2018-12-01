@@ -2,8 +2,7 @@ const {allCards} = require('./deck.js');
 
 class Game {
   // hostSocket: from io.on('connection')
-  // room: set to io.to(this.id) in server.js
-  // roomID: text room ID
+  // id: text room ID
   // players: [{name:"", socket:<io sock>, hand:[card]}]
 
   constructor(hostSocket) {
