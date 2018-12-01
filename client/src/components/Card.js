@@ -7,9 +7,12 @@ class Card extends React.Component {
         width: "225px",
         height: "350px",
         borderRadius: "10px",
-        backgroundColor: "#fff"
+        backgroundColor: this.props.black ? "#000" : "#fff"
       }}>
-        <span>{this.props.text}</span>
+        <div style={{
+          padding: "20px",
+          color: this.props.black ? "#fff" : "#000"
+        }}>{this.props.text}</div>
       </div>
     )
   }
