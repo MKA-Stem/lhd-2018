@@ -1,6 +1,6 @@
 {
   "name": "lhd-2018",
-  "private": "true",
+  "private": true,
   "version": "1.0.0",
   "description": "Card game",
   "main": "server.js",
