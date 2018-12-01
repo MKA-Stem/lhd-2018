@@ -13,10 +13,6 @@ const io = ioServer(server);
 app.use(morgan("dev"));
 app.get("/*", express.static("./client/build/"));
 
-app.get("/api/test", (req, res) => {
-  res.status(200).send({ status: "ok" });
-});
-
 const allGames = {};
 
 io.on("connection", socket => {
