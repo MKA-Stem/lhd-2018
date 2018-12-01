@@ -63,6 +63,12 @@ class Game {
     this.room.emit("scoreboard", { players });
   }
 
+  _updateUndecided() {
+    // count unsubmited players
+    const undecided = this.players.filter(e => e.choice == null).length - 1; // subtract 1 for czar
+    this.room.emit("undecided", { count: undecided });
+  }
+
   _enter_selecting() {
     // we're selecting now
     if (this.state !== "judging" && this.state !== "lobby") {
@@ -79,6 +85,9 @@ class Game {
 
     // Select the next czar
     this.czarInd = (this.czarInd + 1) % this.players.length;
+
+    // Update the undecided count
+    this._updateUndecided();
 
     // clear current cards
     this.players.forEach(player => (player.choice = null));
@@ -132,9 +141,7 @@ class Game {
     player.choice = card;
     player.hand = player.hand.filter(elt => elt !== card);
 
-    // count unsubmited players
-    const undecided = this.players.filter(e => e.choice == null).length - 1; // subtract 1 for czar
-    this.host.emit("undecided", { count: undecided });
+    this._updateUndecided();
 
     if (undecided == 0) {
       this._enter_judging();
