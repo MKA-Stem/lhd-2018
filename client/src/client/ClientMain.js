@@ -4,9 +4,7 @@ import Login from "./Login.js";
 import CardSelect from "./CardSelect.js";
 import Judgement from "./Judgement.js";
 import Cover from "common/Cover.js";
-
-const socketUrl =
-  process.env.NODE_ENV === "production" ? "/" : "http://localhost:8080/";
+import { socketUrl } from "common/socketUrl.js";
 
 console.log("sock url", socketUrl);
 
