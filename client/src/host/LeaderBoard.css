@@ -1,0 +1,19 @@
+.LeaderBoard {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.LeaderBoardLine {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 20px 20%;
+  font-size: 23px;
+}
+
+.BoardTitle > .LeaderBoardLine {
+  font-weight: bolder;
+  font-size: 30px;
+  border-bottom: solid 3px black;
+}
