@@ -1,6 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
-import DesktopHome from "./DesktopHome";
+import Landing from "./Landing.js";
 import { socketUrl } from "common/socketUrl.js";
 
 class HostMain extends React.Component {
@@ -35,7 +35,7 @@ class HostMain extends React.Component {
   render() {
     const { id } = this.state;
     return (
-      <DesktopHome
+      <Landing
         id={id}
         onStart={() => {
           this.socket.emit("host/start");

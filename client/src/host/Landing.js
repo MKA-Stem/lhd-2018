@@ -1,7 +1,7 @@
 import React from "react";
-import "./DesktopHome.css";
+import "./Landing.css";
 
-class DesktopHome extends React.Component {
+class Landing extends React.Component {
   render() {
     const { id, onStart } = this.props;
     return (
@@ -44,4 +44,4 @@ class DesktopHome extends React.Component {
   }
 }
 
-export default DesktopHome;
+export default Landing;
