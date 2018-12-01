@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+import MobileHome from './mobile/MobileHome';
 
 const socketUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8080/';
 
@@ -32,7 +33,7 @@ class ClientMain extends React.Component {
   }
 
   render() {
-    return <h1>Client Main</h1>;
+    return <MobileHome titleText={this.props.titleText}/>;
   }
 }
 

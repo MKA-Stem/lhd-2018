@@ -11,20 +11,22 @@ class MobileHome extends React.Component{
   }
   render(){
     return(
-      <div style={{
+      <div className="home" style={{
+        width: '100%',
+        height: '100vh',
         backgroundColor: '#000'
       }}>
         <header>
           <h1 style={{
-            color: '#fff'
+            color: '#fff',
+            margin: '0'
           }}>{`Cards Against ${this.props.titleText}`}</h1>
         </header>
-        <div>
           <form>
-            <input type="text" placeholder="What should we call you?" 
+            <input type="text" placeholder="Name" 
             value={this.state.name} onChange={e => {this.setState({name: e.target.value})}}
             style={{
-              width: '50%',
+              width: '75%',
               height: '30px',
               border: 'none',
               fontSize: '20px',
@@ -34,7 +36,7 @@ class MobileHome extends React.Component{
             <input type="number" placeholder="Game Code"
             value={this.state.code} onChange={e => {this.setState({code: e.target.value})}}
             style={{
-              width: '50%',
+              width: '75%',
               height: '30px',
               border: 'none',
               fontSize: '20px',
@@ -42,14 +44,14 @@ class MobileHome extends React.Component{
               padding: '10px'
             }}/>
             <button onClick={this.props.onClick} style={{
-              width: '20%',
+              width: '50%',
               height: '50px',
-              border: 'none',
+              borderRadius: '5px',
+              borderColor: '#fff',
               fontSize: '20px',
               backgroundColor: '#fff'
             }}>Let's Go!</button>
           </form>
-        </div>
       </div>
     )
   }
