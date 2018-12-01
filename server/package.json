@@ -5,5 +5,8 @@
   "scripts": {
     "start": "node server.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "shuffle-array": "^1.0.1"
+  }
 }

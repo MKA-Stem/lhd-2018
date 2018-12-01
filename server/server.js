@@ -11,7 +11,7 @@ const server = http.Server(app);
 const io = ioServer(server);
 
 app.use(morgan("dev"));
-app.get("/*", express.static("./client/build/"));
+app.get("/*", express.static("../client/build/"));
 
 const allGames = {};
 
