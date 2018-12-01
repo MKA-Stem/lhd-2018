@@ -2,11 +2,16 @@ import React from "react";
 import io from "socket.io-client";
 import Landing from "./Landing.js";
 import { socketUrl } from "common/socketUrl.js";
+import Cover from "common/Cover.js";
 
 class HostMain extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: 0 };
+    this.state = {
+      state: "landing",
+      id: 0,
+      players: []
+    };
   }
 
   componentDidMount() {
@@ -26,22 +31,52 @@ class HostMain extends React.Component {
     };
 
     bindFn("gameid");
+    bindFn("game_judging");
+    bindFn("game_selecting");
+    bindFn("leaderboard");
+  }
+
+  _handle_game_judging() {
+    this.setState({
+      state: "judging",
+      waiting: false,
+      undecided: null
+    });
+  }
+
+  _handle_game_selecting() {
+    this.setState({
+      state: "selecting",
+      waiting: false,
+      choices: []
+    });
   }
 
   _handle_gameid(id) {
     this.setState({ id });
   }
 
+  _handle_leaderboard({ players }) {
+    this.setState({ players });
+  }
+
   render() {
-    const { id } = this.state;
-    return (
-      <Landing
-        id={id}
-        onStart={() => {
-          this.socket.emit("host/start");
-        }}
-      />
-    );
+    const { state, players, id } = this.state;
+    console.log("host render", this.state);
+
+    if (state === "landing") {
+      return (
+        <Landing
+          id={id}
+          players={players}
+          onStart={() => {
+            this.socket.emit("host/start");
+          }}
+        />
+      );
+    }
+
+    return <Cover spinner />;
   }
 }
 

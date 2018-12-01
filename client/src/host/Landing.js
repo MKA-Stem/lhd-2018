@@ -3,7 +3,7 @@ import "./Landing.css";
 
 class Landing extends React.Component {
   render() {
-    const { id, onStart } = this.props;
+    const { id, players, onStart } = this.props;
     return (
       <div
         className="home"
@@ -38,7 +38,9 @@ class Landing extends React.Component {
         <button onClick={onStart} className="go">
           Let's Get This Party Started!
         </button>
-        <div className="palyerPool" />
+        {players.length !== 0 && (
+          <div>{players.map(e => e.name).join(",  ")}</div>
+        )}
       </div>
     );
   }

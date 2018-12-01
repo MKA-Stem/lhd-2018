@@ -41,7 +41,7 @@ class Game {
     this.players.push(player);
     socket.join(this.id); //put the client into the right room on the server
 
-    this.host.emit("joined", { id: player.id, name: player.name });
+    this._updateLeaderboard(); // update host leaderboard
 
     // Bind local methods to socket
     socket.on("client/pick", args => this._cl_pick(player, args));
@@ -60,7 +60,7 @@ class Game {
       name: e.name,
       score: e.score
     }));
-    this.room.emit("scoreboard", { players });
+    this.room.emit("leaderboard", { players });
   }
 
   _updateUndecided() {
