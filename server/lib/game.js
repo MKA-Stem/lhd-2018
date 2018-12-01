@@ -65,7 +65,7 @@ class Game {
 
   _enter_selecting() {
     // we're selecting now
-    if (this.state !== "judging" || this.state !== "lobby") {
+    if (this.state !== "judging" && this.state !== "lobby") {
       console.error(
         "ERROR: _enter_selecting attempted during " + this.state + " state"
       );
