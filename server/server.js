@@ -1,39 +1,37 @@
 #!/usr/bin/env node
-const express = require('express');
-const http = require('http');
-const morgan = require('morgan');
-const ioServer = require('socket.io');
-const {Game} = require('./lib/game.js');
+const express = require("express");
+const http = require("http");
+const morgan = require("morgan");
+const ioServer = require("socket.io");
+const { Game } = require("./lib/game.js");
 
 const port = process.env.PORT || 8080;
 const app = express();
 const server = http.Server(app);
 const io = ioServer(server);
 
-app.use(morgan('dev'));
-app.get('/*', express.static('./client/build/'));
+app.use(morgan("dev"));
+app.get("/*", express.static("./client/build/"));
 
-app.get('/api/test', (req, res) => {
-  res.status(200).send({status: 'ok'});
+app.get("/api/test", (req, res) => {
+  res.status(200).send({ status: "ok" });
 });
 
 const allGames = {};
 
-io.on('connection', socket => {
-  console.log('Connection to Socket');
+io.on("connection", socket => {
+  console.log("Connection to Socket");
 
-  socket.emit('debug', 'please print this on client');
-
-  socket.on('join_game', ({id, name}) => {
+  socket.on("join_game", ({ id, name }) => {
     const game = allGames[id];
     if (!game) {
-      socket.emit('error', {message: "Can't find game."});
+      socket.emit("error", { message: "Can't find game." });
       return;
     }
-    game.addPlayer({name, socket}); // joins player to room
+    game.addPlayer({ name, socket }); // joins player to room
   });
 
-  socket.on('join_host', () => {
+  socket.on("join_host", () => {
     const game = new Game(socket);
     allGames[game.id] = game;
     socket.join(game.id);
@@ -42,5 +40,5 @@ io.on('connection', socket => {
 });
 
 server.listen(port, () => {
-  console.log('Server listening on ' + port);
+  console.log("Server listening on " + port);
 });
