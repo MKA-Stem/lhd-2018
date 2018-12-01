@@ -130,6 +130,7 @@ class Game {
     }
 
     player.choice = card;
+    player.hand = player.hand.filter(elt => elt !== card);
 
     // count unsubmited players
     const undecided = this.players.filter(e => e.choice == null).length - 1; // subtract 1 for czar
