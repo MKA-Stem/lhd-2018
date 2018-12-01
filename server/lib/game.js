@@ -26,7 +26,7 @@ class Game {
   addPlayer({ name, socket }) {
     if (this.state !== "lobby") {
       socket.error("cannot join started game");
-      socket.close();
+      socket.disconnect(true);
       return;
     }
 
@@ -67,6 +67,7 @@ class Game {
     // count unsubmited players
     const undecided = this.players.filter(e => e.choice == null).length - 1; // subtract 1 for czar
     this.room.emit("undecided", { count: undecided });
+    return undecided;
   }
 
   _enter_selecting() {
@@ -134,14 +135,14 @@ class Game {
       this.state !== "selecting" ||
       player.id === this.players[this.czarInd].id
     ) {
-      player.socket.close();
+      player.socket.disconnect(true);
       return;
     }
 
     player.choice = card;
     player.hand = player.hand.filter(elt => elt !== card);
 
-    this._updateUndecided();
+    const undecided = this._updateUndecided();
 
     if (undecided == 0) {
       this._enter_judging();
@@ -154,7 +155,7 @@ class Game {
       this.state !== "judging" ||
       player.id != this.players[this.czarInd].id
     ) {
-      player.socket.close();
+      player.socket.disconnect(true);
       return;
     }
 
