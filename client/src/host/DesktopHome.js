@@ -22,7 +22,7 @@ class DesktopHome extends React.Component{
         <div className="card credits">
           <h2>Made with<span role="img" aria-label="heart">❤️</span> for Local Hack Day!</h2>
         </div>
-        <button>Let's Get This Party Started!</button>
+        <button className="go">Let's Get This Party Started!</button>
         <div className="palyerPool">
 
         </div>
