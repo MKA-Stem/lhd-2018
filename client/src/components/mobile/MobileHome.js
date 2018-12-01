@@ -19,8 +19,8 @@ class MobileHome extends React.Component{
         <header>
           <h1 style={{
             color: '#fff',
-            margin: '0'
-          }}>{`Cards Against ${this.props.titleText}`}</h1>
+            marginBottom: '10px'
+          }}>Cards Against, Together</h1>
         </header>
           <form>
             <input type="text" placeholder="Name" 
@@ -31,6 +31,7 @@ class MobileHome extends React.Component{
               border: 'none',
               fontSize: '20px',
               margin: '5px',
+              borderRadius: '10px',
               padding: '10px'
             }}/>
             <input type="number" placeholder="Game Code"
@@ -41,14 +42,16 @@ class MobileHome extends React.Component{
               border: 'none',
               fontSize: '20px',
               margin: '5px',
+              borderRadius: '10px',
               padding: '10px'
             }}/>
             <button onClick={this.props.onClick} style={{
               width: '50%',
               height: '50px',
-              borderRadius: '5px',
+              borderRadius: '10px',
               borderColor: '#fff',
               fontSize: '20px',
+              margin: '5px',
               backgroundColor: '#fff'
             }}>Let's Go!</button>
           </form>

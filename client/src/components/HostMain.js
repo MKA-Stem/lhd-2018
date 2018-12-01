@@ -1,8 +1,9 @@
 import React from 'react';
+import DesktopHome from './desktop/DesktopHome';
 
 class HostMain extends React.Component {
   render() {
-    return <h1>Host Main</h1>;
+    return <DesktopHome/>;
   }
 }
 
