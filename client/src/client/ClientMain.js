@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import Login from "./Login.js";
 import CardSelect from "./CardSelect.js";
 import Judgement from "./Judgement.js";
+import Cover from "common/Cover.js";
 
 const socketUrl =
   process.env.NODE_ENV === "production" ? "/" : "http://localhost:8080/";
@@ -14,7 +15,7 @@ class ClientMain extends React.Component {
     super(props);
     this.state = {
       state: "login",
-      waiting: false,
+      waiting: "",
 
       // lobby state
       name: "",
@@ -43,8 +44,8 @@ class ClientMain extends React.Component {
       console.log("connected, window.socket for debugging");
     });
 
-    this.socket.on("error", err => {
-      alert("There was a server error.");
+    this.socket.on("badGame", err => {
+      alert("That game ID doesn't exist");
       window.location.reload();
     });
 
@@ -116,7 +117,7 @@ class ClientMain extends React.Component {
     } = this.state;
 
     if (waiting) {
-      return <h1>Waiting</h1>;
+      return <Cover text={waiting} spinner />;
     }
 
     if (state === "login") {
@@ -131,7 +132,10 @@ class ClientMain extends React.Component {
               id: this.state.id,
               name: this.state.name
             });
-            this.setState({ state: "lobby", waiting: true });
+            this.setState({
+              state: "lobby",
+              waiting: "Waiting for players..."
+            });
           }}
         />
       );
@@ -151,18 +155,20 @@ class ClientMain extends React.Component {
             }));
 
             // wait for change
-            this.setState(state => ({ waiting: true }));
+            this.setState(state => ({
+              waiting: "Waiting for players to pick..."
+            }));
           }}
         />
       );
     }
 
     if (state === "selecting" && czar && czar.id === this.socket.id) {
-      return <h1>You are the Czar</h1>;
+      return <Cover text={"You are the Judge."} spinner />;
     }
 
     if (state === "judging" && czar.id !== this.socket.id) {
-      return <h1>You aren't the czar</h1>;
+      return <Cover text={"Your friends are judging you"} spinner />;
     }
 
     if (state === "judging" && czar.id === this.socket.id) {
@@ -177,7 +183,7 @@ class ClientMain extends React.Component {
       );
     }
 
-    return <pre>{JSON.stringify(this.state, null, 2)}</pre>;
+    return <Cover spinner />;
   }
 }
 
