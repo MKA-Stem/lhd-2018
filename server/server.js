@@ -21,7 +21,7 @@ io.on("connection", socket => {
   socket.on("join_game", ({ id, name }) => {
     const game = allGames[id];
     if (!game) {
-      socket.emit("error", { message: "Can't find game." });
+      socket.emit("badGame");
       return;
     }
     game.addPlayer({ name, socket }); // joins player to room
