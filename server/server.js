@@ -3,10 +3,11 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const morgan = require('morgan');
 
 const port = process.env.PORT || 8080;
 
-app.use(require('morgan')('dev'));
+app.use(morgan('dev'));
 app.get('/*', express.static('./client/build/'));
 
 app.get('/api/test', (req, res) => {

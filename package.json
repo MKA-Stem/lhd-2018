@@ -5,7 +5,7 @@
   "description": "Card game",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "cd server && yarn start",
     "heroku-postbuild": "npm run build",
     "build": "cd client && npm run build"
   },
@@ -13,8 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/MKA-Stem/lhd-2018.git"
   },
-  "author":
-    "Mark Apinis, William Goodall, Aaron Goidel, Neil Maharishi, Aiden Larish, Darren Zou",
+  "author": "Mark Apinis, William Goodall, Aaron Goidel, Neil Maharishi, Aiden Larish, Darren Zou",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MKA-Stem/lhd-2018/issues"
