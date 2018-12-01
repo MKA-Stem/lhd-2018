@@ -1,22 +1,26 @@
 {
   "name": "lhd-2018",
+  "private": "true",
   "version": "1.0.0",
   "description": "Card game",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MKA-Stem/lhd-2018.git"
   },
-  "author": "Mark Apinis, William Goodall, Aaron Goidel, Neil Maharishi, Aiden Larish, Darren Zou",
+  "author":
+    "Mark Apinis, William Goodall, Aaron Goidel, Neil Maharishi, Aiden Larish, Darren Zou",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MKA-Stem/lhd-2018/issues"
   },
   "homepage": "https://github.com/MKA-Stem/lhd-2018#readme",
+  "workspaces": ["client", "server"],
   "dependencies": {
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
