@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const shuffle = require("shuffle-array");
 
 module.exports.makeDecks = () => {
   const promptsText = fs.readFileSync(
@@ -34,3 +35,18 @@ module.exports.makeDecks = () => {
 };
 
 module.exports.allCards = module.exports.makeDecks();
+
+module.exports.Deck = class Deck {
+  constructor() {
+    this.prompts = shuffle([...module.exports.allCards.prompts]);
+    this.responses = shuffle([...module.exports.allCards.responses]);
+  }
+
+  getNextCard(type) {
+    const card = this[type].pop();
+    if (this[type].length == 0) {
+      this[type] = shuffle([...module.exports.allCards[type]]);
+    }
+    return card;
+  }
+};

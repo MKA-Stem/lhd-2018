@@ -1,5 +1,4 @@
-const { allCards } = require("./deck.js");
-const shuffle = require("shuffle-array");
+const { Deck } = require("./deck.js");
 
 class Game {
   constructor(hostSocket, maxScore = null) {
@@ -14,8 +13,7 @@ class Game {
     this.czarInd = 0; // a player obj
 
     // deck of cards. Cards removed when dealt.
-    this.prompts = shuffle([...allCards.prompts]);
-    this.responses = shuffle([...allCards.responses]);
+    this.deck = new Deck();
     this.promptCard = null;
 
     // send the host the game id
@@ -51,7 +49,7 @@ class Game {
   }
 
   _dealOneCard(p) {
-    const card = this.responses.pop();
+    const card = this.deck.getNextCard("responses");
     p.hand.push(card);
     p.socket.emit("deal", card);
   }
@@ -69,7 +67,7 @@ class Game {
     // we're selecting now
     if (this.state !== "judging" || this.state !== "lobby") {
       console.error(
-        "ERROR: _enter_selecting attempted during " + state + " state"
+        "ERROR: _enter_selecting attempted during " + this.state + " state"
       );
       return;
     }
@@ -86,7 +84,7 @@ class Game {
     this.players.forEach(player => (player.choice = null));
 
     // Select the prompt card
-    this.promptCard = this.prompts.pop();
+    this.promptCard = this.deck.getNextCard("prompts");
 
     // tell people about everything
     const czar = this.players[this.czarInd];
@@ -102,7 +100,7 @@ class Game {
   _enter_judging() {
     if (this.state !== "selecting") {
       console.error(
-        "ERROR: _enter_judging attempted during " + state + " state"
+        "ERROR: _enter_judging attempted during " + this.state + " state"
       );
       return;
     }
@@ -175,7 +173,9 @@ class Game {
   //----- host events -----
   _ho_start() {
     if (this.state !== "lobby") {
-      console.error("ERROR: _ho_start attempted during " + state + " state");
+      console.error(
+        "ERROR: _ho_start attempted during " + this.state + " state"
+      );
       return;
     }
 
