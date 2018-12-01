@@ -1,21 +1,41 @@
-const { makeDecks } = require("Deck.js");
+const {allCards} = require('./deck.js');
 
 class Game {
-  constructor(roomID, hostSocket) {
+  // hostSocket: from io.on('connection')
+  // room: set to io.to(this.id) in server.js
+  // roomID: text room ID
+  // players: [{name:"", socket:<io sock>, hand:[card]}]
+
+  constructor(hostSocket) {
     this.hostSocket = hostSocket;
-    this.roomID = roomID;
+    this.id = Math.floor(Math.random() * 100000);
 
     this.players = [];
-    this.cards = makeDecks();
+    this.cards = [...allCards];
+
+    // debug
+    setInterval(() => {
+      this.room.emit('debug', {id: this.id, playerNames: this.players.map(e => e.name)});
+    }, 3000);
   }
 
-  join({ name, socket }) {
+  _blast() {
+    this.hostSocket.emit.apply(this.hostSocket, arguments);
+    for (let player of this.players) {
+      player.socket.emit.apply(player.socket, arguments);
+    }
+  }
+
+  addPlayer({name, socket}) {
     this.players.push({
-      name: name,
-      socket: socket,
+      name,
+      socket,
       hand: []
     });
-  }
+    socket.join(this.id); //put the client into the right room on the server
 
-  leave(socket) {} // probably not implemented
+    socket.emit('debug', 'joined game.');
+  }
 }
+
+module.exports.Game = Game;

@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "description": "Card game",
-  "main": "server.js",
   "scripts": {
     "start": "cd server && yarn start",
     "heroku-postbuild": "npm run build",
