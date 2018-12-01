@@ -37,12 +37,11 @@ class Game {
       id: socket.id,
       socket,
       score: 0,
-      hand: []
+      hand: [],
+      choice: null
     };
     this.players.push(player);
     socket.join(this.id); //put the client into the right room on the server
-
-    socket.emit("debug", "joined game.");
 
     this.host.emit("joined", { id: player.id, name: player.name });
 
