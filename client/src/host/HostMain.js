@@ -17,6 +17,7 @@ class HostMain extends React.Component {
       waiting: false,
       id: 0,
       prompt: { id: 0, text: "" },
+      oldPrompt: null,
       players: [],
       choices: [],
       best: null,
@@ -61,7 +62,7 @@ class HostMain extends React.Component {
 
   _handle_game_selecting() {
     if (this.state.best != null) {
-      this.setState({ state: "_winner" });
+      this.setState({ state: "_winner", oldPrompt: this.state.prompt });
       setTimeout(() => {
         this.setState({
           state: "selecting"
@@ -112,6 +113,7 @@ class HostMain extends React.Component {
       undecided,
       czar,
       best,
+      oldPrompt,
       id
     } = this.state;
     console.log("host render", this.state);
@@ -150,7 +152,7 @@ class HostMain extends React.Component {
     }
 
     if (state === "_winner") {
-      return <Winner prompt={prompt} best={best} />;
+      return <Winner prompt={oldPrompt || {}} best={best} />;
     }
 
     return <Cover spinner />;
