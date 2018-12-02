@@ -6,7 +6,7 @@ Authors:
 * Aaron Goidel
 * William Goodall
 * Mark Apinis
-* Niel Maharishi
+* Neil Maharishi
 * Aiden Larish
 * Darren Zou
 
