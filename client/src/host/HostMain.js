@@ -5,6 +5,8 @@ import { socketUrl } from "common/socketUrl.js";
 import Cover from "common/Cover.js";
 import Prompt from "host/Prompt.js";
 import Choices from "host/Choices.js";
+import LeaderBoard from "host/LeaderBoard.js";
+import "./HostMain.css";
 
 class HostMain extends React.Component {
   constructor(props) {
@@ -114,7 +116,16 @@ class HostMain extends React.Component {
     }
 
     if (state === "selecting") {
-      return <Prompt prompt={prompt} undecided={undecided} />;
+      return (
+        <div className="Host_lead-split">
+          <div className="Host_lead-left">
+            <Prompt prompt={prompt} undecided={undecided} />
+          </div>
+          <div className="Host_lead-right">
+            <LeaderBoard players={players} />
+          </div>
+        </div>
+      );
     }
 
     if (state === "judging") {

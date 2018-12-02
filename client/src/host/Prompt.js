@@ -1,10 +1,14 @@
 import React from "react";
+import Card from "common/Card.js";
+import "./Prompt.css";
 
 const Prompt = ({ prompt, undecided }) => {
   return (
-    <div>
-      <h2>{prompt.text}</h2>
-      <p>Undecided: {undecided}</p>
+    <div className="Prompt">
+      <div className="Prompt_inner">
+        <Card big black text={prompt.text} />
+        <h1>Undecided: {undecided}</h1>
+      </div>
     </div>
   );
 };
