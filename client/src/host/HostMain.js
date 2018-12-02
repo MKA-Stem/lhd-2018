@@ -3,14 +3,20 @@ import io from "socket.io-client";
 import Landing from "./Landing.js";
 import { socketUrl } from "common/socketUrl.js";
 import Cover from "common/Cover.js";
+import Prompt from "host/Prompt.js";
+import Choices from "host/Choices.js";
 
 class HostMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       state: "landing",
+      waiting: false,
       id: 0,
-      players: []
+      prompt: { id: 0, text: "" },
+      players: [],
+      choices: [],
+      undecided: 0
     };
   }
 
@@ -34,21 +40,23 @@ class HostMain extends React.Component {
     bindFn("game_judging");
     bindFn("game_selecting");
     bindFn("leaderboard");
+    bindFn("prompt");
+    bindFn("undecided");
+    bindFn("choices");
+    bindFn("czar");
   }
 
   _handle_game_judging() {
     this.setState({
       state: "judging",
       waiting: false,
-      undecided: null
+      undecided: 0
     });
   }
 
   _handle_game_selecting() {
     this.setState({
-      state: "selecting",
-      waiting: false,
-      choices: []
+      state: "selecting"
     });
   }
 
@@ -60,9 +68,38 @@ class HostMain extends React.Component {
     this.setState({ players });
   }
 
+  _handle_prompt(prompt) {
+    this.setState({ prompt });
+  }
+
+  _handle_undecided({ count }) {
+    this.setState({ undecided: count });
+  }
+
+  _handle_choices({ choices }) {
+    this.setState({ choices });
+  }
+
+  _handle_czar(czar) {
+    this.setState({ czar });
+  }
+
   render() {
-    const { state, players, id } = this.state;
+    const {
+      waiting,
+      state,
+      players,
+      choices,
+      prompt,
+      undecided,
+      czar,
+      id
+    } = this.state;
     console.log("host render", this.state);
+
+    if (waiting) {
+      return <Cover spinner text={waiting} />;
+    }
 
     if (state === "landing") {
       return (
@@ -74,6 +111,14 @@ class HostMain extends React.Component {
           }}
         />
       );
+    }
+
+    if (state === "selecting") {
+      return <Prompt prompt={prompt} undecided={undecided} />;
+    }
+
+    if (state === "judging") {
+      return <Choices choices={choices} czar={czar} prompt={prompt} />;
     }
 
     return <Cover spinner />;
