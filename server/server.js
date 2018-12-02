@@ -18,11 +18,11 @@ const allGames = {};
 io.on("connection", socket => {
   console.log("Connection to Socket");
 
-  const game;
+  const game = null;
   socket.on("join_game", ({ id, name }) => {
     game = allGames[id];
     if (!game) {
-      socket.emit("badGame", {message: "game does not exist"});
+      socket.emit("badGame", { message: "game does not exist" });
       return;
     }
     game.addPlayer({ name, socket }); // joins player to room
@@ -36,7 +36,9 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    game.removePlayer(socket.id);
+    if (game) {
+      game.removePlayer(socket.id);
+    }
   });
 });
 

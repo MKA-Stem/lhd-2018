@@ -24,7 +24,9 @@ class Game {
   }
 
   removePlayer(id) {
-    this.players = this.players.filter(player => player.id !== id);
+    if (this.players) {
+      this.players = this.players.filter(player => player.id !== id);
+    }
   }
 
   addPlayer({ name, socket }) {
