@@ -39,7 +39,11 @@ class Landing extends React.Component {
           Let's Get This Party Started!
         </button>
         {players.length !== 0 && (
-          <div className="people">In Game:<br/>{players.map(e => e.name).join(",  ")}</div>
+          <h3 className="people">
+            In Game:
+            <br />
+            {players.map(e => e.name).join(",  ")}
+          </h3>
         )}
       </div>
     );
