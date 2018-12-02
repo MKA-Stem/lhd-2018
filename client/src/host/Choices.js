@@ -5,7 +5,7 @@ import "./Choices.css";
 const Choices = ({ prompt, choices, czar }) => {
   return (
     <div className="Choices">
-      <h1>{czar.name} is the czar</h1>
+      <h1>{czar.name} is the Judge.</h1>
       <div className="Choices_container">
         <Card black text={prompt.text} />
         {choices

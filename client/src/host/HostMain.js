@@ -6,6 +6,7 @@ import Cover from "common/Cover.js";
 import Prompt from "host/Prompt.js";
 import Choices from "host/Choices.js";
 import LeaderBoard from "host/LeaderBoard.js";
+import Winner from "host/Winner.js";
 import "./HostMain.css";
 
 class HostMain extends React.Component {
@@ -18,6 +19,7 @@ class HostMain extends React.Component {
       prompt: { id: 0, text: "" },
       players: [],
       choices: [],
+      best: null,
       undecided: 0
     };
   }
@@ -46,6 +48,7 @@ class HostMain extends React.Component {
     bindFn("undecided");
     bindFn("choices");
     bindFn("czar");
+    bindFn("best");
   }
 
   _handle_game_judging() {
@@ -57,9 +60,18 @@ class HostMain extends React.Component {
   }
 
   _handle_game_selecting() {
-    this.setState({
-      state: "selecting"
-    });
+    if (this.state.best != null) {
+      this.setState({ state: "_winner" });
+      setTimeout(() => {
+        this.setState({
+          state: "selecting"
+        });
+      }, 5000);
+    } else {
+      this.setState({
+        state: "selecting"
+      });
+    }
   }
 
   _handle_gameid(id) {
@@ -86,6 +98,10 @@ class HostMain extends React.Component {
     this.setState({ czar });
   }
 
+  _handle_best(best) {
+    this.setState({ best });
+  }
+
   render() {
     const {
       waiting,
@@ -95,6 +111,7 @@ class HostMain extends React.Component {
       prompt,
       undecided,
       czar,
+      best,
       id
     } = this.state;
     console.log("host render", this.state);
@@ -130,6 +147,10 @@ class HostMain extends React.Component {
 
     if (state === "judging") {
       return <Choices choices={choices} czar={czar} prompt={prompt} />;
+    }
+
+    if (state === "_winner") {
+      return <Winner prompt={prompt} best={best} />;
     }
 
     return <Cover spinner />;

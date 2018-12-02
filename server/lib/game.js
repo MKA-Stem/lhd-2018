@@ -165,7 +165,14 @@ class Game {
 
     // Increment the winner's score
     winner.score++;
-    winner.socket.emit("best", { score: winner.score });
+    const winMsg = {
+      card,
+      id: winner.id,
+      name: winner.name,
+      score: winner.score
+    };
+    winner.socket.emit("best", winMsg);
+    this.host.emit("best", winMsg);
 
     if (this.maxScore && winner.score >= this.maxScore) {
       // Winning Occurs here
