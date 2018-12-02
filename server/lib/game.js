@@ -23,12 +23,6 @@ class Game {
     this.host.on("host/start", this._ho_start.bind(this));
   }
 
-  removePlayer(id) {
-    if (this.players) {
-      this.players = this.players.filter(player => player.id !== id);
-    }
-  }
-
   addPlayer({ name, socket }) {
     if (this.state !== "lobby") {
       socket.emit("badGame", { message: "cannot join started game" });
@@ -52,6 +46,12 @@ class Game {
     // Bind local methods to socket
     socket.on("client/pick", args => this._cl_pick(player, args));
     socket.on("client/judgement", args => this._cl_judgement(player, args));
+  }
+
+  removePlayer(id) {
+    if (this.players) {
+      this.players = this.players.filter(player => player.id !== id);
+    }
   }
 
   _dealOneCard(p) {
