@@ -23,6 +23,10 @@ class Game {
     this.host.on("host/start", this._ho_start.bind(this));
   }
 
+  removePlayer(id) {
+    this.players = this.players.filter(player => player.id !== id);
+  }
+
   addPlayer({ name, socket }) {
     if (this.state !== "lobby") {
       socket.emit("badGame", { message: "cannot join started game" });

@@ -18,20 +18,25 @@ const allGames = {};
 io.on("connection", socket => {
   console.log("Connection to Socket");
 
+  const game;
   socket.on("join_game", ({ id, name }) => {
-    const game = allGames[id];
+    game = allGames[id];
     if (!game) {
-      socket.emit("badGame");
+      socket.emit("badGame", {message: "game does not exist"});
       return;
     }
     game.addPlayer({ name, socket }); // joins player to room
   });
 
   socket.on("join_host", () => {
-    const game = new Game(socket);
+    game = new Game(socket);
     allGames[game.id] = game;
     socket.join(game.id);
     game.room = io.to(game.id);
+  });
+
+  socket.on("disconnect", () => {
+    game.removePlayer(socket.id);
   });
 });
 
