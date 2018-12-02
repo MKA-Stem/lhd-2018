@@ -25,7 +25,7 @@ class Game {
 
   addPlayer({ name, socket }) {
     if (this.state !== "lobby") {
-      socket.error("cannot join started game");
+      socket.emit("badGame", { message: "cannot join started game" });
       socket.disconnect(true);
       return;
     }
