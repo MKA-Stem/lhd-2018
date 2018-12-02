@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Card extends React.Component {
   render(){
     return(
@@ -12,9 +13,13 @@ class Card extends React.Component {
         backgroundColor: this.props.black ? "#000" : "#fff",
         display: 'inline-block',
         margin: '0px 10px'
-      }}>
+      }} onClick={this.props.onClick}>
         <div style={{
           padding: "20px",
+          width: "225px",
+          height: "350px",
+          whiteSpace: 'normal',
+          fontSize: "20px",
           color: this.props.black ? "#fff" : "#000"
         }}>{this.props.text}</div>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Card from '../common/Card';
 
 const Judgement = ({ prompt, choices, onSelect }) => {
   return (
@@ -7,10 +8,14 @@ const Judgement = ({ prompt, choices, onSelect }) => {
       {choices
         .filter(e => e.choice !== null)
         .map(e => (
-          <div key={e.id}>
-            <button onClick={() => onSelect(e)}>
-              {prompt.text.replace(/_+/g, e.choice.text)}
-            </button>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'nowrap',
+            overflowX: 'scroll',
+            height: '400px',
+            whiteSpace: 'nowrap'
+          }}>
+            <Card style={{whiteSpace: 'normal'}} key={e.id} text={prompt.text.replace(/_+/g, e.choice.text)} onClick={()=>onSelect(e)}/>
           </div>
         ))}
     </div>
