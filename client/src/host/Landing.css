@@ -175,3 +175,8 @@
     animation-timing-function: ease-out;
   }
 }
+
+.people {
+  position: absolute;
+  bottom: 200px;
+}
