@@ -1,14 +1,19 @@
 import React from "react";
+import Card from "common/Card.js";
+import "./Choices.css";
 
 const Choices = ({ prompt, choices, czar }) => {
   return (
-    <div>
-      {choices
-        .filter(e => e.choice !== null)
-        .map(e => (
-          <h2 key={e.id}>{prompt.text.replace(/_+/g, e.choice.text)}</h2>
-        ))}
-      <div>{czar.name} is the czar</div>
+    <div className="Choices">
+      <h1>{czar.name} is the czar</h1>
+      <div className="Choices_container">
+        <Card black text={prompt.text} />
+        {choices
+          .filter(e => e.choice !== null)
+          .map(e => (
+            <Card key={e.id} text={e.choice.text} />
+          ))}
+      </div>
     </div>
   );
 };

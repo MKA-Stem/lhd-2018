@@ -10,26 +10,16 @@ const LeaderBoardLine = ({ name, score }) => (
 
 class LeaderBoard extends React.Component {
   render() {
-    /*let rank = 0;
-    let items = this.props.players
-      .sort((a, b) => b.score - a.score)
-      .map(player => (
-        <li key={`place_${++rank}`}>
-          {`${rank} ${player.name} `}
-          <div className="score">{player.score}</div>
-        </li>
-      ));*/
     return (
       <div className="LeaderBoard">
-        <div className="BoardTitle">
-          <LeaderBoardLine name="Player" score="Score" />
-        </div>
+        <h1>Players</h1>
         {this.props.players
           .sort((a, b) => b.score - a.score)
           .map(player => (
             <LeaderBoardLine
+              key={player.id}
               name={player.name}
-              score={player.score + " Points"}
+              score={player.score}
             />
           ))}
       </div>
