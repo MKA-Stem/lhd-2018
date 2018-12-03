@@ -7,7 +7,7 @@ const Prompt = ({ prompt, undecided }) => {
     <div className="Prompt">
       <div className="Prompt_inner">
         <Card big black text={prompt.text} />
-        <h1>Undecided: {undecided}</h1>
+        <h1 className="un">Undecided: {undecided}</h1>
       </div>
     </div>
   );

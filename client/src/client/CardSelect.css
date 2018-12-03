@@ -1,0 +1,17 @@
+.outer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.scroll-wrapper {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  padding-bottom: 50px;
+  margin-top: -175px;
+  /* height: 400px; */
+  white-space: nowrap;
+}

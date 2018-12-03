@@ -1,18 +1,12 @@
 import React from "react";
 import Card from '../common/Card';
+import './CardSelect.css'
 
 const Judgement = ({ prompt, choices, onSelect }) => {
   return (
-    <div>
+    <div className='outer'>
       <h1>Pick a pairing</h1>
-      <div style={{
-            display: 'flex',
-            flexWrap: 'nowrap',
-            overflowX: 'scroll',
-            overflowY: 'none',
-            height: '400px',
-            whiteSpace: 'nowrap'
-          }}>
+      <div className='scroll-wrapper'>
       {choices
         .filter(e => e.choice !== null)
         .map(e => (

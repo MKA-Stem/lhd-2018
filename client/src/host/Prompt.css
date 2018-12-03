@@ -1,3 +1,7 @@
+.un {
+  margin-left: 40px;
+  margin-top: 0;
+}
 .Prompt {
   display: flex;
   flex-direction: column;

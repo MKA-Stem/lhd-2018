@@ -1,17 +1,12 @@
 import React from "react";
 import Card from '../common/Card';
+import './CardSelect.css'
 
 const CardSelect = ({ cards, onSelect }) => {
   return (
-    <div style={{maxHeight: '100vh'}}>
-      <h1>Pick a card</h1>
-      <div style={{
-        display: 'flex',
-        flexWrap: 'nowrap',
-        overflowX: 'scroll',
-        height: '400px',
-        whiteSpace: 'nowrap'
-      }}>
+    <div className='outer' style={{maxHeight: '100vh'}}>
+      {/* <h1>Pick a card</h1> */}
+      <div className='scroll-wrapper'>
       {cards.map(e => (
         <Card style={{
           flex: '0 0 auto',
