@@ -16,12 +16,7 @@ class Landing extends React.Component {
           backgroundColor: "#000"
         }}
       >
-        <h1
-          style={{ fontSize: "50px", marginBottom: "0", padding: "0" }}
-          className="title"
-        >
-          Cards Against, Together
-        </h1>
+        <h1 className="title">Cards Against, Together</h1>
         <div className="gameCode card">
           <h2 style={{ margin: "0" }}>Your Game Code Is:</h2>
           <h1 style={{ margin: "0", fontSize: "40px" }}>{id}</h1>
