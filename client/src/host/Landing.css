@@ -142,6 +142,11 @@
   animation: bounce-button 1.1s 7.2s both;
 }
 
+.go:hover {
+  background-color: #fff;
+  color: #000;
+}
+
 @keyframes bounce-button {
   0% {
     transform: translateY(-500px);
