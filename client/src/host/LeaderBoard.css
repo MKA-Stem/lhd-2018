@@ -9,16 +9,12 @@
   margin-top: 0;
 }
 
-.container {
+.LeaderBoard_container {
   width: 370px;
   padding: 10px;
-  background-color: #000;
-  border-radius: 10px;
-  padding-bottom: -50px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-.LeaderBoardLine {
+.LeaderBoard_line {
   overflow: hidden;
   background-color: #fff;
   border-radius: 5px;
@@ -28,27 +24,23 @@
   padding: 0 20px;
   height: 50px;
   line-height: 50px;
-  width: 350px;
   margin-bottom: 10px;
   font-size: 23px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-.num, .score {
+.LeaderBoard_num {
   font-size: 18px;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.65);
 }
 
-.name {
+.LeaderBoard_num-fade {
+  opacity: 0.8;
+}
+
+.LeaderBoard_name {
   font-size: 18px;
-  margin-left: -240px;
+  margin-left: 1em;
+  margin-right: auto;
 }
-
-.BoardTitle > .LeaderBoardLine {
-  font-weight: bolder;
-  font-size: 30px;
-  border-bottom: solid 3px black;
-}
-
-* > :last-child { margin-bottom: 0 !important; }
