@@ -96,7 +96,7 @@ class ClientMain extends React.Component {
   }
   _handle_best() {
     this.setState(state => ({ score: state.score + 1 }));
-    alert("You win!");
+    // alert("You win!");
   }
   _handle_choices({ choices }) {
     this.setState({ choices });

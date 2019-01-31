@@ -22,7 +22,7 @@ class Landing extends React.Component {
           <h1 style={{ margin: "0", fontSize: "40px" }}>{id}</h1>
         </div>
         <div className="card credits">
-          <h2>
+          <h2 style={{ margin: "0" }}>
             Made with
             <span role="img" aria-label="heart">
               ❤️
